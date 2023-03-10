@@ -38,12 +38,17 @@ struct ContentView: View {
     GeometryReader { geometry in
       ZStack(alignment: .top) {
         // Map - TODO add the map here
-          MapViewControllerBridge(markers: $markers)
+          MapViewControllerBridge(
+            markers: $markers,
+            selectedMarker: $selectedMarker
+          )
           
         // Cities List
         CitiesList(markers: $markers) { (marker) in
+            //Animation map to selected city
           guard self.selectedMarker != marker else { return }
           self.selectedMarker = marker
+            
           self.zoomInCenter = false
           self.expandList = false
         }  handleAction: {
@@ -119,7 +124,10 @@ struct MapContainerView: View {
   var body: some View {
     GeometryReader { geometry in
       let diameter = zoomInCenter ? geometry.size.width : (geometry.size.height * 2)
-        MapViewControllerBridge(markers: $markers)
+        MapViewControllerBridge(
+            markers: $markers,
+            selectedMarker: $selectedMarker
+        )
       .clipShape(
         Circle()
           .size(
