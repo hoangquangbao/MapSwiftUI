@@ -38,10 +38,25 @@ struct ContentView: View {
         GeometryReader { geometry in
             ZStack(alignment: .top) {
                 // Map - TODO add the map here
+                let diameter = zoomInCenter ? geometry.size.width : (geometry.size.height * 2)
                 MapViewControllerBridge(
                     markers: $markers,
-                    selectedMarker: $selectedMarker
+                    selectedMarker: $selectedMarker,
+                    onAnimationEnded: {
+                        self.zoomInCenter = true
+                    })
+                .clipShape(
+                    Circle()
+                        .size(
+                            width: diameter,
+                            height: diameter
+                        )
+                        .offset(CGPoint(x: (geometry.size.width - diameter) / 2,
+                                        y: (geometry.size.height - diameter) / 2)
+                        )
                 )
+                .animation(.easeIn, value: diameter)
+                .background(.ultraThinMaterial)
                 
                 // Cities List
                 CitiesList(markers: $markers) { (marker) in
@@ -61,7 +76,7 @@ struct ContentView: View {
                     y: geometry.size.height - (expandList ? scrollViewHeight + 150 : scrollViewHeight)
                 )
                 .offset(x: 0, y: self.yDragTranslation)
-                .animation(.spring())
+                .animation(.spring(), value: expandList)
                 .gesture(
                     DragGesture().onChanged { value in
                         self.yDragTranslation = value.translation.height
@@ -126,8 +141,10 @@ struct MapContainerView: View {
             let diameter = zoomInCenter ? geometry.size.width : (geometry.size.height * 2)
             MapViewControllerBridge(
                 markers: $markers,
-                selectedMarker: $selectedMarker
-            )
+                selectedMarker: $selectedMarker,
+                onAnimationEnded: {
+                    self.zoomInCenter = true
+                })
             .clipShape(
                 Circle()
                     .size(
@@ -141,7 +158,7 @@ struct MapContainerView: View {
                         )
                     )
             )
-            .animation(.easeIn)
+            .animation(.easeIn, value: diameter)
             .background(Color(red: 254.0/255.0, green: 1, blue: 220.0/255.0))
         }
     }

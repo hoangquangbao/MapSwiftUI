@@ -12,6 +12,7 @@ struct MapViewControllerBridge: UIViewControllerRepresentable {
     
     @Binding var markers: [GMSMarker]
     @Binding var selectedMarker: GMSMarker?
+    var onAnimationEnded: () -> ()
     
     func makeUIViewController(context: Context) -> MapViewController {
         // Replace this line
@@ -39,6 +40,10 @@ struct MapViewControllerBridge: UIViewControllerRepresentable {
                     map.animate(with: GMSCameraUpdate.setTarget(selectedMarker.position))
                     DispatchQueue.main.asyncAfter(deadline: .now() + 0.5) {
                         map.animate(toZoom: 12)
+                        DispatchQueue.main.asyncAfter(deadline: .now() + 0.5) {
+                            // Invoke onAnimationEnded() one the animation sequence completes
+                            onAnimationEnded()
+                        }
                     }
                 }
             }
