@@ -10,7 +10,7 @@ import SwiftUI
 import UIKit
 
 class MapViewController: UIViewController {
-
+    
     let map = GMSMapView(
         frame: .zero,
         camera: GMSCameraPosition(

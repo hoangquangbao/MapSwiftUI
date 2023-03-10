@@ -12,19 +12,19 @@ struct MapViewControllerBridge: UIViewControllerRepresentable {
     
     @Binding var markers: [GMSMarker]
     @Binding var selectedMarker: GMSMarker?
-
-  func makeUIViewController(context: Context) -> MapViewController {
-    // Replace this line
-    return MapViewController()
-  }
-
-  func updateUIViewController(_ uiViewController: MapViewController, context: Context) {
-      // Update the map for each marker
-      markers.forEach {  $0.map = uiViewController.map }
-      
-      selectedMarker?.map = uiViewController.map
-      animateSelectedMarker(viewController: uiViewController)
-  }
+    
+    func makeUIViewController(context: Context) -> MapViewController {
+        // Replace this line
+        return MapViewController()
+    }
+    
+    func updateUIViewController(_ uiViewController: MapViewController, context: Context) {
+        // Update the map for each marker
+        markers.forEach {  $0.map = uiViewController.map }
+        
+        selectedMarker?.map = uiViewController.map
+        animateSelectedMarker(viewController: uiViewController)
+    }
     
     //Animation map to selected city
     private func animateSelectedMarker(viewController: MapViewController) {

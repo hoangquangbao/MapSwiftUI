@@ -8,6 +8,6 @@
 import CoreLocation
 
 struct CityModel {
-  var name: String
-  var coordinate: CLLocationCoordinate2D
+    var name: String
+    var coordinate: CLLocationCoordinate2D
 }
