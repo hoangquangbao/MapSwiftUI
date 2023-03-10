@@ -9,12 +9,16 @@ import GoogleMaps
 import SwiftUI
 
 struct MapViewControllerBridge: UIViewControllerRepresentable {
+    
+    @Binding var markers: [GMSMarker]
 
   func makeUIViewController(context: Context) -> MapViewController {
     // Replace this line
-    return UIViewController() as! MapViewController
+    return MapViewController()
   }
 
   func updateUIViewController(_ uiViewController: MapViewController, context: Context) {
+      // Update the map for each marker
+      markers.forEach {  $0.map = uiViewController.map }
   }
 }

@@ -38,7 +38,8 @@ struct ContentView: View {
     GeometryReader { geometry in
       ZStack(alignment: .top) {
         // Map - TODO add the map here
-
+          MapViewControllerBridge(markers: $markers)
+          
         // Cities List
         CitiesList(markers: $markers) { (marker) in
           guard self.selectedMarker != marker else { return }
@@ -47,7 +48,8 @@ struct ContentView: View {
           self.expandList = false
         }  handleAction: {
           self.expandList.toggle()
-        }.background(Color.white)
+        }
+        .background(Color.white)
         .clipShape(RoundedRectangle(cornerRadius: 10))
         .offset(
           x: 0,
@@ -117,7 +119,7 @@ struct MapContainerView: View {
   var body: some View {
     GeometryReader { geometry in
       let diameter = zoomInCenter ? geometry.size.width : (geometry.size.height * 2)
-      MapViewControllerBridge()
+        MapViewControllerBridge(markers: $markers)
       .clipShape(
         Circle()
           .size(
