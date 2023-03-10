@@ -44,6 +44,9 @@ struct ContentView: View {
                     selectedMarker: $selectedMarker,
                     onAnimationEnded: {
                         self.zoomInCenter = true
+                    }, mapViewWillMove: { isGesture in
+                        guard isGesture else { return }
+                        self.zoomInCenter = false
                     })
                 .clipShape(
                     Circle()
@@ -144,6 +147,9 @@ struct MapContainerView: View {
                 selectedMarker: $selectedMarker,
                 onAnimationEnded: {
                     self.zoomInCenter = true
+                }, mapViewWillMove: { isGesture in
+                    guard isGesture else { return }
+                    self.zoomInCenter = false
                 })
             .clipShape(
                 Circle()
