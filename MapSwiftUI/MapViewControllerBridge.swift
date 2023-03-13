@@ -46,7 +46,7 @@ struct MapViewControllerBridge: UIViewControllerRepresentable {
                         map.animate(toZoom: 12)
                         DispatchQueue.main.asyncAfter(deadline: .now() + 0.5) {
                             // Invoke onAnimationEnded() one the animation sequence completes
-                            onAnimationEnded()
+//                            onAnimationEnded()
                         }
                     }
                 }
@@ -66,7 +66,7 @@ struct MapViewControllerBridge: UIViewControllerRepresentable {
         }
         
         func mapView(_ mapView: GMSMapView, willMove gesture: Bool) {
-            self.mapViewControllerBridge.mapViewWillMove(gesture)
+//            self.mapViewControllerBridge.mapViewWillMove(gesture)
         }
     }
 }

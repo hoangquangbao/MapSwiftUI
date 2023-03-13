@@ -26,7 +26,7 @@ struct ContentView: View {
         return marker
     }
     
-    @State var zoomInCenter: Bool = false
+//    @State var zoomInCenter: Bool = false
     @State var expandList: Bool = false
     @State var selectedMarker: GMSMarker?
     @State var yDragTranslation: CGFloat = 0
@@ -38,27 +38,27 @@ struct ContentView: View {
         GeometryReader { geometry in
             ZStack(alignment: .top) {
                 // Map - TODO add the map here
-                let diameter = zoomInCenter ? geometry.size.width : (geometry.size.height * 2)
+//                let diameter = zoomInCenter ? geometry.size.width : (geometry.size.height * 2)
                 MapViewControllerBridge(
                     markers: $markers,
                     selectedMarker: $selectedMarker,
                     onAnimationEnded: {
-                        self.zoomInCenter = true
+//                        self.zoomInCenter = true
                     }, mapViewWillMove: { isGesture in
-                        guard isGesture else { return }
-                        self.zoomInCenter = false
+//                        guard isGesture else { return }
+//                        self.zoomInCenter = false
                     })
-                .clipShape(
-                    Circle()
-                        .size(
-                            width: diameter,
-                            height: diameter
-                        )
-                        .offset(CGPoint(x: (geometry.size.width - diameter) / 2,
-                                        y: (geometry.size.height - diameter) / 2)
-                        )
-                )
-                .animation(.easeIn, value: diameter)
+//                .clipShape(
+//                    Circle()
+//                        .size(
+//                            width: diameter,
+//                            height: diameter
+//                        )
+//                        .offset(CGPoint(x: (geometry.size.width - diameter) / 2,
+//                                        y: (geometry.size.height - diameter) / 2)
+//                        )
+//                )
+//                .animation(.easeIn, value: diameter)
                 .background(.ultraThinMaterial)
                 
                 // Cities List
@@ -67,7 +67,7 @@ struct ContentView: View {
                     guard self.selectedMarker != marker else { return }
                     self.selectedMarker = marker
                     
-                    self.zoomInCenter = false
+//                    self.zoomInCenter = false
                     self.expandList = false
                 }  handleAction: {
                     self.expandList.toggle()
