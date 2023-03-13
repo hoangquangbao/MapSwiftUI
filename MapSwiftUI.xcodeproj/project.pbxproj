@@ -73,8 +73,8 @@
 			children = (
 				06CD8D8629BAE580001B1A1E /* AppDelegate.swift */,
 				06CD8DA029BAE82C001B1A1E /* CityModel.swift */,
-				06CD8D9A29BAE7CE001B1A1E /* MapViewControllerBridge.swift */,
 				06CD8D9C29BAE7EF001B1A1E /* MapViewController.swift */,
+				06CD8D9A29BAE7CE001B1A1E /* MapViewControllerBridge.swift */,
 				06CD8D9E29BAE80B001B1A1E /* ContentView.swift */,
 				06CD8D8829BAE580001B1A1E /* SceneDelegate.swift */,
 				06CD8D8A29BAE580001B1A1E /* ViewController.swift */,

@@ -19,15 +19,15 @@ struct MapViewControllerBridge: UIViewControllerRepresentable {
         // Replace this line
 //        return MapViewController()
         let uiViewController = MapViewController()
-        uiViewController.map.delegate = context.coordinator
+        uiViewController.mapView.delegate = context.coordinator
         return uiViewController
     }
     
     func updateUIViewController(_ uiViewController: MapViewController, context: Context) {
         // Update the map for each marker
-        markers.forEach {  $0.map = uiViewController.map }
+        markers.forEach {  $0.map = uiViewController.mapView }
         
-        selectedMarker?.map = uiViewController.map
+        selectedMarker?.map = uiViewController.mapView
         animateSelectedMarker(viewController: uiViewController)
     }
     
@@ -35,7 +35,7 @@ struct MapViewControllerBridge: UIViewControllerRepresentable {
     private func animateSelectedMarker(viewController: MapViewController) {
         guard let selectedMarker = selectedMarker else { return }
         
-        let map = viewController.map
+        let map = viewController.mapView
         if map.selectedMarker != selectedMarker {
             map.selectedMarker = selectedMarker
             DispatchQueue.main.asyncAfter(deadline: .now() + 0.5) {
