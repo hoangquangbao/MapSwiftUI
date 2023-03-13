@@ -9,7 +9,7 @@ import GoogleMaps
 import SwiftUI
 import UIKit
 
-class MapViewController: UIViewController {
+class MapViewController: UIViewController, GMSMapViewDelegate {
     
     let mapView = GMSMapView(
         frame: .zero,
@@ -22,6 +22,7 @@ class MapViewController: UIViewController {
     
     override func loadView() {
         super.loadView()
+        
         /* MAP TYPE - We have some map types: hybrid, satellite, terrain, normal and none. Normal type is default */
 //        mapView.mapType = .normal
         
@@ -43,6 +44,16 @@ class MapViewController: UIViewController {
 //        let mapInsets = UIEdgeInsets(top: 100, left: 0, bottom: 0, right: 150)
 //        mapView.padding = mapInsets
         
+        mapView.delegate = self
         self.view = mapView
+    }
+    
+    func mapView(
+      _ mapView: GMSMapView,
+      didTapPOIWithPlaceID placeID: String,
+      name: String,
+      location: CLLocationCoordinate2D
+    ) {
+      print("You tapped \(name): \(placeID), \(location.latitude)/\(location.longitude)")
     }
 }
