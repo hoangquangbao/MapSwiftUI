@@ -40,8 +40,8 @@ class MapViewController: UIViewController {
         mapView.isBuildingsEnabled = true
         
         /* ADD PADDING - Insets are specified in the order: top, bottom, left, right */
-        let mapInsets = UIEdgeInsets(top: 100, left: 0, bottom: 0, right: 150)
-        mapView.padding = mapInsets
+//        let mapInsets = UIEdgeInsets(top: 100, left: 0, bottom: 0, right: 150)
+//        mapView.padding = mapInsets
         
         self.view = mapView
     }
