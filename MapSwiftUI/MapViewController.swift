@@ -16,9 +16,10 @@ class MapViewController: UIViewController, GMSMapViewDelegate {
         camera: GMSCameraPosition(
             latitude: 37.7576,
             longitude: -122.4194,
-            zoom: 5.0))
+            zoom: 15.0))
     
     var isAnimating: Bool = false
+    let infoMarker = GMSMarker()
     
     override func loadView() {
         super.loadView()
@@ -48,6 +49,7 @@ class MapViewController: UIViewController, GMSMapViewDelegate {
         self.view = mapView
     }
     
+    // Attach an info window to the POI using the GMSMarker.
     func mapView(
       _ mapView: GMSMapView,
       didTapPOIWithPlaceID placeID: String,
@@ -55,5 +57,21 @@ class MapViewController: UIViewController, GMSMapViewDelegate {
       location: CLLocationCoordinate2D
     ) {
       print("You tapped \(name): \(placeID), \(location.latitude)/\(location.longitude)")
+        
+        infoMarker.snippet = placeID
+        infoMarker.position = location
+        infoMarker.title = name
+        
+        // Add a marker
+        infoMarker.opacity = 1
+        infoMarker.appearAnimation = .pop
+        infoMarker.icon = GMSMarker.markerImage(with: .green)
+        
+        // Attach an info window
+//        infoMarker.opacity = 0
+//        infoMarker.infoWindowAnchor.y = 1
+//        mapView.selectedMarker = infoMarker
+        
+        infoMarker.map = mapView
     }
 }
