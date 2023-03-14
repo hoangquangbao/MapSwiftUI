@@ -20,7 +20,7 @@ class MapViewController: UIViewController, GMSMapViewDelegate {
     
     var isAnimating: Bool = false
     let infoMarker = GMSMarker()
-    let MapStyle = "[ \n  { \n    \"featureType\": \"poi.business\", \n    \"elementType\": \"all\",\n    \"stylers\": [\n      {\n        \"visibility\": \"off\"\n      }\n    ]\n  },\n  {\n    \"featureType\": \"transit\",\n    \"elementType\": \"labels.icon\",\n    \"stylers\": [\n      {\n        \"visibility\": \"off\"\n      }\n    ]\n  }\n]"
+//    let MapStyle = "[ \n  { \n    \"featureType\": \"poi.business\", \n    \"elementType\": \"all\",\n    \"stylers\": [\n      {\n        \"visibility\": \"off\"\n      }\n    ]\n  },\n  {\n    \"featureType\": \"transit\",\n    \"elementType\": \"labels.icon\",\n    \"stylers\": [\n      {\n        \"visibility\": \"off\"\n      }\n    ]\n  }\n]"
     
     // Set the status bar style to complement night-mode.
     override var preferredStatusBarStyle: UIStatusBarStyle {
@@ -53,24 +53,24 @@ class MapViewController: UIViewController, GMSMapViewDelegate {
         
         // Hiding Map Features with Styling - Using a string resource
         /* https://developers.google.com/maps/documentation/ios-sdk/hiding-features */
-        do {
-            // Set the map style by passing a valid JSON string.
-            mapView.mapStyle = try GMSMapStyle(jsonString: MapStyle)
-        } catch {
-            NSLog("One or more of the map styles failed to load. \(error)")
-        }
+//        do {
+//            // Set the map style by passing a valid JSON string.
+//            mapView.mapStyle = try GMSMapStyle(jsonString: MapStyle)
+//        } catch {
+//            NSLog("One or more of the map styles failed to load. \(error)")
+//        }
         
         // Hiding Map Features with Styling - using a JSON file
-        do {
-            // Set the map style by passing the URL of the local file.
-            if let styleURL = Bundle.main.url(forResource: "style", withExtension: "json") {
-                mapView.mapStyle = try GMSMapStyle(contentsOfFileURL: styleURL)
-            } else {
-                NSLog("Unable to find style.json")
-            }
-        } catch {
-            NSLog("One or more of the map styles failed to load. \(error)")
-        }
+//        do {
+//            // Set the map style by passing the URL of the local file.
+//            if let styleURL = Bundle.main.url(forResource: "style", withExtension: "json") {
+//                mapView.mapStyle = try GMSMapStyle(contentsOfFileURL: styleURL)
+//            } else {
+//                NSLog("Unable to find style.json")
+//            }
+//        } catch {
+//            NSLog("One or more of the map styles failed to load. \(error)")
+//        }
         
         mapView.delegate = self
         self.view = mapView
